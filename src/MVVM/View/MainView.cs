@@ -27,6 +27,7 @@ namespace StudentSystemWinForms.MVVM.View
             }
 
             InitializeComponent();
+            mainPanel.Controls.Add(new HomeView());
             PerformBinding();
         }
 

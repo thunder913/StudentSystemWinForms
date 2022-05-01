@@ -41,7 +41,7 @@
             // 
             this.mainPanel.Location = new System.Drawing.Point(188, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(415, 465);
+            this.mainPanel.Size = new System.Drawing.Size(622, 465);
             this.mainPanel.TabIndex = 0;
             // 
             // navigationPanel
@@ -135,7 +135,7 @@
             this.Controls.Add(this.navigationPanel);
             this.Controls.Add(this.mainPanel);
             this.Name = "MainView";
-            this.Size = new System.Drawing.Size(603, 465);
+            this.Size = new System.Drawing.Size(810, 465);
             this.navigationPanel.ResumeLayout(false);
             this.navigationPanel.PerformLayout();
             this.ResumeLayout(false);

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using StudentSystemWinForms.MVVM.ViewModel;
+using StudentSystemWinForms.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +12,24 @@ using System.Windows.Forms;
 
 namespace StudentSystemWinForms.MVVM.View
 {
-    public partial class HomeView : UserControl
+    public partial class HomeView : ViewBase
     {
-        public HomeView()
+        private HomeViewModel _model;        
+        public HomeView(HomeViewModel model = null)
         {
+            if (model != null)
+            {
+                _model = model;
+            }
+            else
+            {
+                _model = new HomeViewModel();
+            }            
             InitializeComponent();
+        }
+
+        public override void PerformBinding()
+        {
         }
     }
 }
