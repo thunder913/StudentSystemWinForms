@@ -61,11 +61,12 @@ namespace StudentSystemWinForms.Models
             }
         }
 
-        internal void Login()
+        public void Login(Action redirect)
         {
             if (_userService.Login(Username, Password))
             {
                 _suggestionFileManager.AddLoginSuggestion(new UserLoginSuggestion(Username, Password));
+                redirect.Invoke();
             }
             else
             {
@@ -73,9 +74,10 @@ namespace StudentSystemWinForms.Models
             }
         }
 
-        internal void Register()
+        public void Register()
         {
-            throw new NotImplementedException();
+            _userService.Register(Username, Password);
+            MessageBox.Show("Успешно се регистрирахте!");
         }
     }
 }

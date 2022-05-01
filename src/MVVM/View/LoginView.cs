@@ -35,7 +35,7 @@ namespace StudentSystemWinForms.Views
             passwordBox.DataBindings.Add("Text", _model, nameof(_model.Password), false, DataSourceUpdateMode.OnPropertyChanged);
             
             usernameBox.TextChanged += (sender, e) => _model.HandleSuggestionClicked(sender);
-            loginButton.Click += (sender, e) => _model.Login();
+            loginButton.Click += (sender, e) => _model.Login(() => (this.Parent as Main).SwapView(new OtherView()));
             registerButton.Click += (sender, e) => _model.Register();
         }
     }

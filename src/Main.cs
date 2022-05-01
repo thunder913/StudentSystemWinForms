@@ -16,7 +16,7 @@ namespace StudentSystemWinForms
     {
         private ViewBase _view;      
         private ViewModelBase _model;
-        private void SwapView(ViewBase view = null)
+        public void SwapView(ViewBase view = null)
         {
             if (view != null)
             {
