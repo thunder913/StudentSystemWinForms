@@ -32,8 +32,9 @@ namespace StudentSystemWinForms.Views
             usernameBox.AutoCompleteMode = AutoCompleteMode.Suggest;
             usernameBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             usernameBox.AutoCompleteCustomSource = _model.AutoCompleteCollection;
-
             passwordBox.DataBindings.Add("Text", _model, nameof(_model.Password), false, DataSourceUpdateMode.OnPropertyChanged);
+            
+            usernameBox.TextChanged += (sender, e) => _model.HandleSuggestionClicked(sender);
             loginButton.Click += (sender, e) => _model.Login();
             registerButton.Click += (sender, e) => _model.Register();
         }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using StudentSystemWinForms.DAL;
+using StudentSystemWinForms.MVVM.Model;
+using StudentSystemWinForms.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -14,6 +17,9 @@ namespace StudentSystemWinForms.Models
     {
         private string _username;
         private string _password;
+        private UserService _userService;
+        private List<UserLoginSuggestion> loginSuggestions { get; set; } = new List<UserLoginSuggestion>();
+        private SuggestionFileManager _suggestionFileManager;
         public AutoCompleteStringCollection AutoCompleteCollection { get; set; }
         public string Username
         {
@@ -37,17 +43,34 @@ namespace StudentSystemWinForms.Models
         }
         public LoginViewModel()
         {
+            _suggestionFileManager = new SuggestionFileManager();
             AutoCompleteCollection = new AutoCompleteStringCollection();
-            AutoCompleteCollection.Add("ivan");
-            AutoCompleteCollection.Add("petur");
-            AutoCompleteCollection.Add("goergi");
-            AutoCompleteCollection.Add("dragan");
-            AutoCompleteCollection.Add("petkan");
+            loginSuggestions = _suggestionFileManager.GetLoginSuggestions();
+            AutoCompleteCollection.AddRange(loginSuggestions.Select(x => x.Username).ToArray());
+            _userService = new UserService(new StudentContext());
+        }
+
+        internal void HandleSuggestionClicked(object sender)
+        {
+            var textBox = sender as TextBox;
+            if (AutoCompleteCollection.Contains(textBox.Text))
+            {
+                var suggestion = loginSuggestions.FirstOrDefault(x => x.Username == textBox.Text);
+                Username = textBox.Text;
+                Password = suggestion.Password;
+            }
         }
 
         internal void Login()
         {
-            var test = Username + Password;
+            if (_userService.Login(Username, Password))
+            {
+                _suggestionFileManager.AddLoginSuggestion(new UserLoginSuggestion(Username, Password));
+            }
+            else
+            {
+                MessageBox.Show("Невалидно потребителско име или парола!");
+            }
         }
 
         internal void Register()

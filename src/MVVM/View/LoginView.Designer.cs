@@ -88,7 +88,7 @@ namespace StudentSystemWinForms.Views
             // 
             // loginButton
             // 
-            this.loginButton.Location = new System.Drawing.Point(385, 158);
+            this.loginButton.Location = new System.Drawing.Point(378, 166);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(116, 38);
             this.loginButton.TabIndex = 5;
@@ -97,7 +97,7 @@ namespace StudentSystemWinForms.Views
             // 
             // registerButton
             // 
-            this.registerButton.Location = new System.Drawing.Point(385, 232);
+            this.registerButton.Location = new System.Drawing.Point(378, 288);
             this.registerButton.Name = "registerButton";
             this.registerButton.Size = new System.Drawing.Size(116, 38);
             this.registerButton.TabIndex = 6;
@@ -107,7 +107,7 @@ namespace StudentSystemWinForms.Views
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(398, 208);
+            this.label4.Location = new System.Drawing.Point(391, 236);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(99, 13);
             this.label4.TabIndex = 7;
@@ -126,7 +126,7 @@ namespace StudentSystemWinForms.Views
             this.Controls.Add(this.label1);
             this.Controls.Add(this.usernameBox);
             this.Name = "LoginView";
-            this.Size = new System.Drawing.Size(714, 324);
+            this.Size = new System.Drawing.Size(736, 471);
             this.ResumeLayout(false);
             this.PerformLayout();
 
