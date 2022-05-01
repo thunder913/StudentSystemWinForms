@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using StudentSystemWinForms.Models;
+using StudentSystemWinForms.MVVM.View;
+using StudentSystemWinForms.MVVM.ViewModel;
 using StudentSystemWinForms.Views;
 
 namespace StudentSystemWinForms
@@ -28,10 +30,10 @@ namespace StudentSystemWinForms
                     _view = new LoginView(_model as LoginViewModel);
                 }
 
-                if (view is OtherView)
+                if (view is MainView)
                 {
-                    _model = new OtherViewModel();
-                    _view = new OtherView(_model as OtherViewModel);
+                    _model = new MainViewModel();
+                    _view = new MainView(_model as MainViewModel);
                 }
             }
             else

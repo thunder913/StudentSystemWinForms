@@ -1,4 +1,5 @@
 ﻿using StudentSystemWinForms.DAL;
+using StudentSystemWinForms.Models;
 using StudentSystemWinForms.MVVM.Model;
 using StudentSystemWinForms.Utils;
 using System;
@@ -11,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace StudentSystemWinForms.Models
+namespace StudentSystemWinForms.MVVM.ViewModel
 {
     public sealed class LoginViewModel : ViewModelBase
     {

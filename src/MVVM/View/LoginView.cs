@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using StudentSystemWinForms.Models;
+﻿using System.Windows.Forms;
+using StudentSystemWinForms.MVVM.View;
+using StudentSystemWinForms.MVVM.ViewModel;
 
 namespace StudentSystemWinForms.Views
 {
@@ -35,7 +30,7 @@ namespace StudentSystemWinForms.Views
             passwordBox.DataBindings.Add("Text", _model, nameof(_model.Password), false, DataSourceUpdateMode.OnPropertyChanged);
             
             usernameBox.TextChanged += (sender, e) => _model.HandleSuggestionClicked(sender);
-            loginButton.Click += (sender, e) => _model.Login(() => (this.Parent as Main).SwapView(new OtherView()));
+            loginButton.Click += (sender, e) => _model.Login(() => (this.Parent as Main).SwapView(new MainView()));
             registerButton.Click += (sender, e) => _model.Register();
         }
     }
