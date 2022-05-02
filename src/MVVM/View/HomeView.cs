@@ -1,4 +1,5 @@
 ﻿using StudentSystemWinForms.MVVM.ViewModel;
+using StudentSystemWinForms.Utils;
 using StudentSystemWinForms.Views;
 using System;
 using System.Collections.Generic;
@@ -26,10 +27,15 @@ namespace StudentSystemWinForms.MVVM.View
                 _model = new HomeViewModel();
             }            
             InitializeComponent();
+            PerformBinding();
         }
 
         public override void PerformBinding()
         {
+            suggestionsCountBox.DataBindings.Add("Text", _model, nameof(_model.SuggestionCount), false, DataSourceUpdateMode.OnPropertyChanged);
+            inputThresholdBox.DataBindings.Add("Text", _model, nameof(_model.InputLengthSuggestions), false, DataSourceUpdateMode.OnPropertyChanged);
+            nameLabel.Text = UserInfo.CurrentUser.Username;
+            saveButton.Click += (sender, e) => _model.ButtonClicked();
         }
     }
 }
