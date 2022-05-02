@@ -48,7 +48,8 @@ namespace StudentSystemWinForms.MVVM.View
             suggestedFacultyNumberBox.AutoCompleteMode = AutoCompleteMode.Suggest;
             suggestedFacultyNumberBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             suggestedFacultyNumberBox.AutoCompleteCustomSource = _model.AutoCompleteCollection;
-            suggestedFacultyNumberBox.TextChanged += (sender, e) => _model.HandleSuggestionClicked(sender);
+
+            suggestedFacultyNumberBox.KeyDown += (sender, e) => _model.HandleKeyPressed(sender, e);
         }
     }
 }

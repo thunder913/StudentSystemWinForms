@@ -106,15 +106,18 @@ namespace StudentSystemWinForms.MVVM.ViewModel
             }
         }
 
-        internal void HandleSearchChanged(object sender)
+        public void HandleKeyPressed(object sender, KeyEventArgs e)
         {
-            var textBox = sender as TextBox;
-            var facNumber = textBox.Text;
-            if (AutoCompleteCollection.Contains(textBox.Text))
+            if (e.KeyData == Keys.Enter)
             {
-                var suggestion = _suggestions.FirstOrDefault(x => x.FacultyNumber == textBox.Text);
-                SearchWord = facNumber;
-                this.Search();
+                var textBox = sender as TextBox;
+                var facNumber = textBox.Text;
+                if (AutoCompleteCollection.Contains(textBox.Text))
+                {
+                    var suggestion = _suggestions.FirstOrDefault(x => x.FacultyNumber == textBox.Text);
+                    SearchWord = facNumber;
+                    this.Search();
+                }
             }
         }
 

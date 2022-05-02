@@ -29,7 +29,7 @@ namespace StudentSystemWinForms.Views
             usernameBox.AutoCompleteCustomSource = _model.AutoCompleteCollection;
             passwordBox.DataBindings.Add("Text", _model, nameof(_model.Password), false, DataSourceUpdateMode.OnPropertyChanged);
             
-            usernameBox.TextChanged += (sender, e) => _model.HandleSuggestionClicked(sender);
+            usernameBox.KeyDown += (sender, e) => _model.HandleKeyPressed(sender, e);
             loginButton.Click += (sender, e) => _model.Login(() => (this.Parent as Main).SwapView(new MainView()));
             registerButton.Click += (sender, e) => _model.Register();
         }

@@ -96,6 +96,21 @@ namespace StudentSystemWinForms.MVVM.ViewModel
                 OnPropertyChanged(new PropertyChangedEventArgs(nameof(Group)));
             }
         }
+
+        internal void HandleKeyPressed(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                var textBox = sender as TextBox;
+                SuggestedFacultyNumber = textBox.Text;
+                if (AutoCompleteCollection.Contains(textBox.Text))
+                {
+                    var suggestion = _suggestions.FirstOrDefault(x => x.FacultyNumber == textBox.Text);
+                    FillTextBoxData(suggestion);
+                }
+            }
+        }
+
         public string Stream
         {
             get => _stream; set
@@ -137,17 +152,6 @@ namespace StudentSystemWinForms.MVVM.ViewModel
             AutoCompleteCollection = new AutoCompleteStringCollection();
             AutoCompleteCollection.AddRange(_suggestions.Select(x => x.FacultyNumber).ToArray());
             studentService = new StudentService(new StudentContext());
-        }
-
-        public void HandleSuggestionClicked(object sender)
-        {
-            var textBox = sender as TextBox;
-            SuggestedFacultyNumber = textBox.Text;
-            if (AutoCompleteCollection.Contains(textBox.Text))
-            {
-                var suggestion = _suggestions.FirstOrDefault(x => x.FacultyNumber == textBox.Text);
-                FillTextBoxData(suggestion);
-            }
         }
 
         public void AddStudentClicked()

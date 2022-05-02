@@ -51,17 +51,6 @@ namespace StudentSystemWinForms.MVVM.ViewModel
             _userService = new UserService(new StudentContext());
         }
 
-        internal void HandleSuggestionClicked(object sender)
-        {
-            var textBox = sender as TextBox;
-            if (AutoCompleteCollection.Contains(textBox.Text))
-            {
-                var suggestion = loginSuggestions.FirstOrDefault(x => x.Username == textBox.Text);
-                Username = textBox.Text;
-                Password = suggestion.Password;
-            }
-        }
-
         public void Login(Action redirect)
         {
             if (_userService.Login(Username, Password))
@@ -79,6 +68,18 @@ namespace StudentSystemWinForms.MVVM.ViewModel
         {
             _userService.Register(Username, Password);
             MessageBox.Show("Успешно се регистрирахте!");
+        }
+
+
+        internal void HandleKeyPressed(object sender, KeyEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (AutoCompleteCollection.Contains(textBox.Text))
+            {
+                var suggestion = loginSuggestions.FirstOrDefault(x => x.Username == textBox.Text);
+                Username = textBox.Text;
+                Password = suggestion.Password;
+            }
         }
     }
 }
