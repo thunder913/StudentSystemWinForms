@@ -1,6 +1,7 @@
 ﻿using StudentSystemWinForms.DAL;
 using StudentSystemWinForms.Models;
 using StudentSystemWinForms.MVVM.Model;
+using StudentSystemWinForms.MVVM.Model.DB;
 using StudentSystemWinForms.Utils;
 using System;
 using System.Collections.Generic;
@@ -17,8 +18,122 @@ namespace StudentSystemWinForms.MVVM.ViewModel
     {
         private string _searchWord;
         private StudentService _studentService;
-        private SuggestionFileManager _suggestionFileManager;        
+        private SuggestionFileManager _suggestionFileManager;
+        private List<StudentSearchSuggestion> _suggestions;
+        public AutoCompleteStringCollection AutoCompleteCollection { get; set; }
         private ListView listView { get; set; }
+        private string _facultyNumber;
+        private string _firstName;
+        private string _middleName;
+        private string _lastName;
+        private string _phoneNumber;
+        private string _email;
+        private string _faculty;
+        private string _specialty;
+        private string _group;
+        private string _course;
+        private string _stream;
+        public string FacultyNumber
+        {
+            get => _facultyNumber; set
+            {
+                _facultyNumber = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(FacultyNumber)));
+            }
+        }
+        public string FirstName
+        {
+            get => _firstName; set
+            {
+                _firstName = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(FirstName)));
+            }
+        }
+        public string MiddleName
+        {
+            get => _middleName; set
+            {
+                _middleName = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(MiddleName)));
+            }
+        }
+        public string LastName
+        {
+            get => _lastName; set
+            {
+                _lastName = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(LastName)));
+            }
+        }
+        public string Faculty
+        {
+            get => _faculty; set
+            {
+                _faculty = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(Faculty)));
+            }
+        }
+        public string Specialty
+        {
+            get => _specialty; set
+            {
+                _specialty = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(Specialty)));
+            }
+        }
+        public string Course
+        {
+            get => _course; set
+            {
+                _course = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(Course)));
+            }
+        }
+        public string Group
+        {
+            get => _group; set
+            {
+                _group = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(Group)));
+            }
+        }
+        public string Stream
+        {
+            get => _stream; set
+            {
+                _stream = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(Stream)));
+            }
+        }
+
+        internal void HandleSearchChanged(object sender)
+        {
+            var textBox = sender as TextBox;
+            var facNumber = textBox.Text;
+            if (AutoCompleteCollection.Contains(textBox.Text))
+            {
+                var suggestion = _suggestions.FirstOrDefault(x => x.FacultyNumber == textBox.Text);
+                SearchWord = facNumber;
+                this.Search();
+            }
+        }
+
+        public string PhoneNumber
+        {
+            get => _phoneNumber; set
+            {
+                _phoneNumber = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(PhoneNumber)));
+            }
+        }
+        public string Email
+        {
+            get => _email; set
+            {
+                _email = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(Email)));
+            }
+        }
         public string SearchWord
         {
             get => _searchWord;
@@ -44,12 +159,26 @@ namespace StudentSystemWinForms.MVVM.ViewModel
                 SearchWord = "Търси...";
         }
 
+        internal void SelectedItemEvent(object sender)
+        {
+            if (listView.SelectedItems.Count > 0)
+            {
+                var selectedItem = listView.SelectedItems[0];
+                var student = _studentService.GetStudent(selectedItem.Text);
+                FillSelectedData(student);
+            }
+        }
+
         public SearchStudentViewModel(ListView listView)
         {
             this.listView = listView;
             SearchWord = "Търси...";
             _studentService = new StudentService(new StudentContext());
             _suggestionFileManager = new SuggestionFileManager();
+            
+            _suggestions = _suggestionFileManager.GetStudentSearchSuggestion();
+            AutoCompleteCollection = new AutoCompleteStringCollection();
+            AutoCompleteCollection.AddRange(_suggestions.Select(x => x.FacultyNumber).ToArray());
         }
 
         public void Search()
@@ -66,6 +195,21 @@ namespace StudentSystemWinForms.MVVM.ViewModel
             {
                 _suggestionFileManager.AddStudentSearchSuggestion(new StudentSearchSuggestion() { FacultyNumber = SearchWord });
             }
+        }
+
+        private void FillSelectedData(Student student)
+        {
+            this.FacultyNumber = student.FacultyNumber;
+            this.FirstName = student.FirstName;
+            this.MiddleName = student.MiddleName;
+            this.LastName = student.LastName;
+            this.Faculty = student.Faculty;
+            this.Specialty = student.Specialty;
+            this.Course = student.Course.ToString();
+            this.Group = student.Group.ToString();
+            this.Stream = student.Stream.ToString();
+            this.PhoneNumber = student.PhoneNumber;
+            this.Email = student.Email;
         }
     }
 }
