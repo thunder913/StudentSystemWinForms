@@ -32,9 +32,7 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.suggestionsCountBox = new System.Windows.Forms.TextBox();
-            this.inputThresholdBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -71,34 +69,18 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(104, 211);
+            this.label3.Location = new System.Drawing.Point(44, 157);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Брой подсказки";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(48, 297);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(145, 13);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Дължина преди подсказки";
-            // 
             // suggestionsCountBox
             // 
-            this.suggestionsCountBox.Location = new System.Drawing.Point(199, 208);
+            this.suggestionsCountBox.Location = new System.Drawing.Point(139, 154);
             this.suggestionsCountBox.Name = "suggestionsCountBox";
             this.suggestionsCountBox.Size = new System.Drawing.Size(121, 20);
             this.suggestionsCountBox.TabIndex = 8;
-            // 
-            // inputThresholdBox
-            // 
-            this.inputThresholdBox.Location = new System.Drawing.Point(199, 294);
-            this.inputThresholdBox.Name = "inputThresholdBox";
-            this.inputThresholdBox.Size = new System.Drawing.Size(121, 20);
-            this.inputThresholdBox.TabIndex = 9;
             // 
             // saveButton
             // 
@@ -115,9 +97,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.saveButton);
-            this.Controls.Add(this.inputThresholdBox);
             this.Controls.Add(this.suggestionsCountBox);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.nameLabel);
@@ -135,9 +115,7 @@
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox suggestionsCountBox;
-        private System.Windows.Forms.TextBox inputThresholdBox;
         private System.Windows.Forms.Button saveButton;
     }
 }

@@ -33,7 +33,6 @@ namespace StudentSystemWinForms.MVVM.View
         public override void PerformBinding()
         {
             suggestionsCountBox.DataBindings.Add("Text", _model, nameof(_model.SuggestionCount), false, DataSourceUpdateMode.OnPropertyChanged);
-            inputThresholdBox.DataBindings.Add("Text", _model, nameof(_model.InputLengthSuggestions), false, DataSourceUpdateMode.OnPropertyChanged);
             nameLabel.Text = UserInfo.CurrentUser.Username;
             saveButton.Click += (sender, e) => _model.ButtonClicked();
         }
