@@ -25,7 +25,6 @@ namespace StudentSystemWinForms.MVVM.View
             {
                 _model = new MainViewModel();
             }
-
             InitializeComponent();
             mainPanel.Controls.Add(new HomeView());
             PerformBinding();
@@ -33,6 +32,24 @@ namespace StudentSystemWinForms.MVVM.View
 
         public override void PerformBinding()
         {
+        }
+
+        private void AddStudentButtonClicked(object sender, EventArgs e)
+        {
+            this.mainPanel.Controls.Clear();
+            this.mainPanel.Controls.Add(new AddStudentView());
+        }
+
+        private void HomeButtonClicked(object sender, EventArgs e)
+        {
+            this.mainPanel.Controls.Clear();
+            this.mainPanel.Controls.Add(new HomeView());
+        }
+
+        private void SearchButtonClicked(object sender, EventArgs e)
+        {
+            this.mainPanel.Controls.Clear();
+            this.mainPanel.Controls.Add(new SearchStudentView());
         }
     }
 }
