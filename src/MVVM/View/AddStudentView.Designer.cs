@@ -44,7 +44,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(630, 57);
+            this.textBox1.Location = new System.Drawing.Point(398, 57);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(161, 20);
             this.textBox1.TabIndex = 4;
@@ -52,7 +52,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(523, 60);
+            this.label2.Location = new System.Drawing.Point(291, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 13);
             this.label2.TabIndex = 3;
@@ -66,7 +66,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "AddStudentView";
-            this.Size = new System.Drawing.Size(844, 568);
+            this.Size = new System.Drawing.Size(581, 441);
             this.ResumeLayout(false);
             this.PerformLayout();
 
